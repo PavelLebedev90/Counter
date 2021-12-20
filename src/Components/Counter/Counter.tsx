@@ -13,6 +13,8 @@ type CounterType = {
     maxValueForClick: maxValueForClickType
     error: boolean
     setParams?: ()=> void
+    maxNum:number
+    startValue:number
 }
 
 export function Counter(props: CounterType) {
@@ -23,6 +25,7 @@ export function Counter(props: CounterType) {
                     maxValue={props.maxValue}
                     maxValueForClick={props.maxValueForClick}
                     error={props.error}
+                    maxNum={props.maxNum}
             />
             <Buttons increment={props.increment}
                      reset = {props.reset}
@@ -32,6 +35,8 @@ export function Counter(props: CounterType) {
                      startValueForClick={props.startValueForClick}
                      maxValueForClick={props.maxValueForClick}
                      setParams={props.setParams}
+                     maxNum={props.maxNum}
+                     startValue={props.startValue}
             />
         </div>
     )

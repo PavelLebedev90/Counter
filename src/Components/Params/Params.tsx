@@ -27,9 +27,9 @@ export function Params(props: ParamsType) {
         props.setStartValue(+e.currentTarget.value)
         props.setError(false)
     }
-    const onFocusHandler = () => {
+ /*   const onFocusHandler = () => {
         props.setNum(props.startValue)
-    }
+    }*/
 
     return (
         <div className="App">
@@ -39,7 +39,7 @@ export function Params(props: ParamsType) {
                        type={'number'}
                        value={props.maxValue}
                        onChange={onChangeMax}
-                       onFocus={onFocusHandler}
+                      /* onFocus={onFocusHandler}*/
                 />
 
                 <Input label={'startValue'}
@@ -47,7 +47,7 @@ export function Params(props: ParamsType) {
                        value={props.startValue}
                        type={'number'}
                        onChange={onChangeStart}
-                       onFocus={onFocusHandler}
+                      /* onFocus={onFocusHandler}*/
                 />
             </div>
             <div className={'buttonSet'}>

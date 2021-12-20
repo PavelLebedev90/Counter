@@ -7,14 +7,14 @@ type ScreenType = {
     maxValue:number
     maxValueForClick:maxValueForClickType
     error:boolean
+    maxNum:number
 }
 
 export function Screen(props:ScreenType) {
+    const screenClass = props.num === props.maxNum? "screenMax": "screen";
     return (
-
-
-        <div className={ props.num === props.maxValueForClick? "screenMax": props.error? "error" : "screen"}>
-            {props.error? "not valid value" : props.num}
+        <div className={screenClass}>
+            {props.error? <span className={"error"}>not valid value</span> : <span className={"spanNum"}>{props.num}</span>}
         </div>
     )
 }
