@@ -1,7 +1,8 @@
-import React from "react";
+import React, {Dispatch} from 'react';
 import {Screen} from "./Screen/Screen";
 import {Buttons} from "./Buttons/Buttons";
 import {maxValueForClickType} from '../../App';
+import {ActionType} from '../../Reducer';
 
 type CounterType = {
     num: number
@@ -15,6 +16,7 @@ type CounterType = {
     setParams?: ()=> void
     maxNum:number
     startValue:number
+    dispatch: Dispatch<ActionType>
 }
 
 export function Counter(props: CounterType) {

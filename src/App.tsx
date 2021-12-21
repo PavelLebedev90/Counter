@@ -1,77 +1,126 @@
-import React, {useEffect, useState} from 'react';
+import React, {useEffect, useReducer} from 'react';
 import './App.css';
 import {Counter} from './Components/Counter/Counter';
 import {Params} from './Components/Params/Params';
-import {Routes, Route, NavLink} from 'react-router-dom';
-import {Button} from './Components/Counter/Buttons/Button/Button';
+import {NavLink, Route, Routes} from 'react-router-dom';
+import {
+    reducer,
+    setErrorAC,
+    setMaxNumAC,
+    setMaxValueAC,
+    setMaxValueForClickAC,
+    setNumAC,
+    setStartValueAC,
+    setStartValueForClickAC
+} from './Reducer';
+
 
 export type maxValueForClickType = number | null
 
+
+
 export function App() {
-    let [num, setNum] = useState(0)
+/*    let [num, setNum] = useState(0)
     let [maxNum, setMaxNum] = useState(0)
     let [startValue, setStartValue] = useState(0)
     let [maxValue, setMaxValue] = useState(0)
     let [error, setError] = useState<boolean>(false)
     let [startValueForClick, setStartValueForClick] = useState(0)
     let [maxValueForClick, setMaxValueForClick] = useState<maxValueForClickType>(null)
+    let [error, setError] = useState<boolean>(false)*/
+
+    let [state, dispatch] = useReducer(reducer, {
+        num: 0,
+        maxNum: 0,
+        startValue: 0,
+        maxValue: 0,
+        startValueForClick: 0,
+        maxValueForClick: null,
+        error: false
+    })
+
 
     const increment = () => {
-        setNum(++num);
+        /*setNum(++num);*/
+
+        dispatch(setNumAC(++state.num))
     }
     const reset = () => {
-        setNum(startValueForClick);
+        dispatch(setNumAC(state.startValueForClick));
         /*setNum(startValue)*/
     }
 
     const setParams = () => {
-        setStartValueForClick(startValue);
+        dispatch(setStartValueForClickAC(state.startValue))
+        dispatch(setMaxValueForClickAC(state.maxValue))
+        dispatch(setNumAC(state.startValue))
+        dispatch(setMaxNumAC(state.maxValue))
+
+ /*       setStartValueForClick(startValue);
         setMaxValueForClick(maxValue);
         setNum(startValue);
-        setMaxNum(maxValue);
+        setMaxNum(maxValue);*/
     }
-    useEffect(()=>{
+    useEffect(() => {
         let numAsString = localStorage.getItem('num');
         let maxNumAsString = localStorage.getItem('maxNum');
         let startValueAsString = localStorage.getItem('startValue');
         let maxValueAsString = localStorage.getItem('maxValue');
         let startValueForClickAsString = localStorage.getItem('startValueForClick');
         let maxValueForClickAsString = localStorage.getItem('maxValueForClick');
-        if(numAsString){
+        if (numAsString) {
             let newNum = JSON.parse(numAsString);
-            setNum(newNum);
+           /* setNum(newNum);*/
+            dispatch(setNumAC(newNum))
         }
-        if(startValueAsString){
-            setStartValue(JSON.parse(startValueAsString))
+        if (maxNumAsString) {
+            /*setStartValue(JSON.parse(startValueAsString))*/
+            dispatch(setMaxNumAC(JSON.parse(maxNumAsString)))
         }
-        if(maxValueAsString){
-            setMaxValue(JSON.parse(maxValueAsString))
+        if (startValueAsString) {
+            /*setStartValue(JSON.parse(startValueAsString))*/
+            dispatch(setStartValueAC(JSON.parse(startValueAsString)))
         }
-        if(startValueForClickAsString){
-            setStartValueForClick(JSON.parse(startValueForClickAsString))
+        if (maxValueAsString) {
+           /* setMaxValue(JSON.parse(maxValueAsString))*/
+            dispatch(setMaxValueAC(JSON.parse(maxValueAsString)))
         }
-        if(maxValueForClickAsString){
-            setMaxValueForClick(JSON.parse(maxValueForClickAsString))
+        if (startValueForClickAsString) {
+            /*setStartValueForClick(JSON.parse(startValueForClickAsString))*/
+            dispatch(setStartValueForClickAC(JSON.parse(startValueForClickAsString)))
+        }
+        if (maxValueForClickAsString) {
+            /*setMaxValueForClick(JSON.parse(maxValueForClickAsString))*/
+            dispatch(setMaxValueForClickAC(JSON.parse(maxValueForClickAsString)))
         }
 
 
-    },[])
-    useEffect(() => {
+    }, [])
+/*    useEffect(() => {
         localStorage.setItem('num', JSON.stringify(num))
         localStorage.setItem('maxNum', JSON.stringify(maxNum))
         localStorage.setItem('startValue', JSON.stringify(startValue))
         localStorage.setItem('maxValue', JSON.stringify(maxValue))
         localStorage.setItem('startValueForClick', JSON.stringify(startValueForClick))
         localStorage.setItem('maxValueForClick', JSON.stringify(maxValueForClick))
-    }, [num, startValue, maxValue, startValueForClick, maxValueForClick])
+    }, [num, startValue, maxValue, startValueForClick, maxValueForClick])*/
 
+    useEffect(() => {
+        localStorage.setItem('num', JSON.stringify(state.num))
+        localStorage.setItem('maxNum', JSON.stringify(state.maxNum))
+        localStorage.setItem('startValue', JSON.stringify(state.startValue))
+        localStorage.setItem('maxValue', JSON.stringify(state.maxValue))
+        localStorage.setItem('startValueForClick', JSON.stringify(state.startValueForClick))
+        localStorage.setItem('maxValueForClick', JSON.stringify(state.maxValueForClick))
+    }, [state])
 
 
     useEffect(() => {
-        if (maxValue < 0 || startValue < 0 || maxValue < startValue) {
-            setError(true)
+        if (state.maxValue < 0 || state.startValue < 0 || state.maxValue < state.startValue) {
+           /* setError(true)*/
+            dispatch(setErrorAC(true))
         }
-    }, [maxValue, startValue])
+    }, [state.maxValue, state.startValue])
 
     return (
         <div>
@@ -80,7 +129,7 @@ export function App() {
                 <Route path={'/twoScreen'} element={
                     <div className="wrapper">
                         <Counter
-                            num={num}
+              /*              num={num}
                             setNum={setNum}
                             increment={increment}
                             reset={reset}
@@ -89,10 +138,21 @@ export function App() {
                             startValueForClick={startValueForClick}
                             maxValueForClick={maxValueForClick}
                             error={error}
-                            startValue={startValue}
+                            startValue={startValue}*/
+                            num={state.num}
+                            setNum={setNumAC}
+                            increment={increment}
+                            reset={reset}
+                            maxValue={state.maxValue}
+                            maxNum={state.maxNum}
+                            startValueForClick={state.startValueForClick}
+                            maxValueForClick={state.maxValueForClick}
+                            error={state.error}
+                            startValue={state.startValue}
+                            dispatch={dispatch}
                         />
                         <Params
-                            setParams={setParams}
+              /*              setParams={setParams}
                             error={error}
                             setError={setError}
                             startValue={startValue}
@@ -100,11 +160,21 @@ export function App() {
                             setNum={setNum}
                             maxValue={maxValue}
                             setMaxValue={setMaxValue}
-                            num={num}
+                            num={num}*/
+                            setParams={setParams}
+                            error={state.error}
+                            setError={setErrorAC}
+                            startValue={state.startValue}
+                            setStartValue={setStartValueAC}
+                            setNum={setNumAC}
+                            maxValue={state.maxValue}
+                            setMaxValue={setMaxValueAC}
+                            num={state.num}
+                            dispatch={dispatch}
                         />
                     </div>
                 }/>
-                <Route key={"oneScreen"} path={'/oneScreen'} element={
+{/*                <Route key={'oneScreen'} path={'/oneScreen'} element={
                     <div className="wrapper">
                         <Counter
                             num={num}
@@ -120,7 +190,7 @@ export function App() {
                             startValue={startValue}
                         />
                     </div>
-                }/>
+                }/>*/}
             </Routes>
         </div>
     );

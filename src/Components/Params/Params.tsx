@@ -1,35 +1,40 @@
 import {Button} from '../Counter/Buttons/Button/Button';
-import React, {ChangeEvent} from 'react';
+import React, {ChangeEvent, Dispatch} from 'react';
 import {Input} from './Input';
+import {ActionType} from '../../Reducer';
+
+
 
 
 type ParamsType = {
     num: number
     setNum: (num: number) => void
     maxValue: number
-    setMaxValue: (value: number) => void
+    setMaxValue: (value: number) => ActionType
     error: boolean
-    setError: (error: boolean) => void
+    setError: (value:boolean) => ActionType
     startValue: number
-    setStartValue: (startValue: number) => void
+    setStartValue: (startValue: number) => ActionType
     setParams: () => void
+    dispatch: Dispatch<ActionType>
 }
 
 export function Params(props: ParamsType) {
 
     const onChangeMax = (e:ChangeEvent<HTMLInputElement>) => {
-        props.setMaxValue(+e.currentTarget.value)
-        props.setError(false)
+        props.dispatch(props.setMaxValue(+e.currentTarget.value))
+        /*props.setError(false)*/
+        props.dispatch(props.setError(false))
     }
 
 
     const onChangeStart = (e:ChangeEvent<HTMLInputElement>) => {
-        props.setStartValue(+e.currentTarget.value)
-        props.setError(false)
+       props.dispatch(props.setStartValue(+e.currentTarget.value))
+        /*props.setStartValue(+e.currentTarget.value)*/
+        /*props.setError(false)*/
+        props.dispatch(props.setError(false))
     }
- /*   const onFocusHandler = () => {
-        props.setNum(props.startValue)
-    }*/
+
 
     return (
         <div className="App">
