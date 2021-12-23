@@ -24,11 +24,6 @@ export function Buttons(props:ButtonsType) {
     return (
         <div className="buttons">
             <Button className={props.error || disableForMore?"buttonDis" : "button"} disabled = {disableForMore} onClick={props.increment}>more</Button>
-            <Routes>
-                <Route key={"oneScreen"} path={"/oneScreen"} element={
-                    <Button className={props.error? "buttonDis":'button'} disabled={props.error} onClick={props.setParams}>set</Button>
-                }/>
-            </Routes>
             <Button className={props.error || disableForReset?"buttonDis":"button"} disabled = {disableForReset} onClick={props.reset}>reset</Button>
         </div>
     )

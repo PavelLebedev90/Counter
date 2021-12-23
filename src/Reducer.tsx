@@ -26,7 +26,7 @@ export type ActionType =
     | ReturnType<typeof setMaxValueForClickAC>
     |
     ReturnType<typeof setErrorAC>
-export const reducer = (state: StateType, action: ActionType) => {
+export const reducer = (state: StateType, action: ActionType):StateType => {
     switch (action.type) {
         case SETSTARTVALUE:
             return {...state, startValue: action.value}
