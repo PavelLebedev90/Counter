@@ -1,31 +1,22 @@
-import React, {Dispatch} from 'react';
-import {Screen} from "./Screen/Screen";
-import {Buttons} from "./Buttons/Buttons";
+import React from 'react';
+import {Screen} from './Screen/Screen';
+import {Buttons} from './Buttons/Buttons';
 import {maxValueForClickType} from '../../App';
-import {ActionType} from '../../Reducer';
 
 type CounterType = {
     num: number
-    maxValue: number
-    setNum: (num: number) => void
     increment: () => void
     reset: () => void
     startValueForClick: number
     maxValueForClick: maxValueForClickType
     error: boolean
-    setParams?: ()=> void
     maxNum:number
-    startValue:number
-    dispatch: Dispatch<ActionType>
 }
 
 export function Counter(props: CounterType) {
     return (
         <div className="App">
             <Screen num={props.num}
-                    startValueForClick={props.startValueForClick}
-                    maxValue={props.maxValue}
-                    maxValueForClick={props.maxValueForClick}
                     error={props.error}
                     maxNum={props.maxNum}
             />
@@ -33,12 +24,8 @@ export function Counter(props: CounterType) {
                      reset = {props.reset}
                      error={props.error}
                      num = {props.num}
-                     maxValue={props.maxValue}
                      startValueForClick={props.startValueForClick}
                      maxValueForClick={props.maxValueForClick}
-                     setParams={props.setParams}
-                     maxNum={props.maxNum}
-                     startValue={props.startValue}
             />
         </div>
     )

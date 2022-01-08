@@ -3,9 +3,6 @@ import {maxValueForClickType} from '../../../App';
 
 type ScreenType = {
     num: number
-    startValueForClick: number
-    maxValue:number
-    maxValueForClick:maxValueForClickType
     error:boolean
     maxNum:number
 }
