@@ -13,8 +13,9 @@ type InputDefaultType = DetailedHTMLProps<InputHTMLAttributes<HTMLInputElement>,
 export function Input(props: InputPropsType) {
 
     return (
-        <div>
-            <label className={props.error? "labelRed": ""}>{props.label}
+        <div className="valueInput">
+            <label className={props.error? "labelRed": ""}>
+                {props.label}
                 <input className={props.error? "errorInput": ""}
                     {...props}
                 />

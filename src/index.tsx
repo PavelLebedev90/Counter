@@ -6,12 +6,15 @@ import reportWebVitals from './reportWebVitals';
 import {BrowserRouter} from 'react-router-dom';
 import {Provider} from 'react-redux';
 import {store} from './BLL/store';
+import {AppWithRedux} from './AppWithRedux';
 
 
 ReactDOM.render(
   <React.StrictMode>
       <BrowserRouter>
-          <Provider store={store}><App/></Provider>
+          <Provider store={store}>
+              <AppWithRedux/>
+          </Provider>
       </BrowserRouter>
   </React.StrictMode>,
   document.getElementById('root')

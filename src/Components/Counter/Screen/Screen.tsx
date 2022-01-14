@@ -1,17 +1,18 @@
 import React from "react";
 import {maxValueForClickType} from '../../../App';
+import {useDispatch, useSelector} from 'react-redux';
+import {RootReducerType} from '../../../BLL/store';
+import {StateType} from '../../../BLL/Reducer';
 
-type ScreenType = {
-    num: number
-    error:boolean
-    maxNum:number
-}
 
-export function Screen(props:ScreenType) {
-    const screenClass = props.num === props.maxNum? "screenMax": "screen";
+
+export function Screen() {
+    const state = useSelector<RootReducerType, StateType>(state => state.counter)
+
+    const screenClass = state.num === state.maxNum? "screenMax": "screen";
     return (
         <div className={screenClass}>
-            {props.error? <span className={"error"}>not valid value</span> : <span className={"spanNum"}>{props.num}</span>}
+            {state.error? <span className={"error"}>not valid value</span> : <span className={"spanNum"}>{state.num}</span>}
         </div>
     )
 }

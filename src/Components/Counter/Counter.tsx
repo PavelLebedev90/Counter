@@ -16,17 +16,17 @@ type CounterType = {
 export function Counter(props: CounterType) {
     return (
         <div className="App">
-            <Screen num={props.num}
-                    error={props.error}
-                    maxNum={props.maxNum}
-            />
-            <Buttons increment={props.increment}
-                     reset = {props.reset}
-                     error={props.error}
-                     num = {props.num}
-                     startValueForClick={props.startValueForClick}
-                     maxValueForClick={props.maxValueForClick}
-            />
+            {/*<Screen num={props.num}*/}
+            {/*        error={props.error}*/}
+            {/*        maxNum={props.maxNum}*/}
+            {/*/>*/}
+            {/*<Buttons increment={props.increment}*/}
+            {/*         reset = {props.reset}*/}
+            {/*         error={props.error}*/}
+            {/*         num = {props.num}*/}
+            {/*         startValueForClick={props.startValueForClick}*/}
+            {/*         maxValueForClick={props.maxValueForClick}*/}
+            {/*/>*/}
         </div>
     )
 }

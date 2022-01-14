@@ -25,7 +25,9 @@
     font-size: 20px;
     color: #7e00ff;
 }
-
+.valueInput input{
+    width: 170px;
+}
 .labelRed {
     font-size: 20px;
     color: red;

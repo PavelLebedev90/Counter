@@ -79,15 +79,15 @@ export function App() {
                 }/>
                 <Route key={'oneScreen'} path={'/oneScreen'} element={
                     <div className="wrapper">
-                        <Counter
-                            num={state.num}
-                            increment={increment}
-                            reset={reset}
-                            maxNum={state.maxNum}
-                            startValueForClick={state.startValueForClick}
-                            maxValueForClick={state.maxValueForClick}
-                            error={state.error}
-                        />
+                        {/*<Counter*/}
+                        {/*    num={state.num}*/}
+                        {/*    increment={increment}*/}
+                        {/*    reset={reset}*/}
+                        {/*    maxNum={state.maxNum}*/}
+                        {/*    startValueForClick={state.startValueForClick}*/}
+                        {/*    maxValueForClick={state.maxValueForClick}*/}
+                        {/*    error={state.error}*/}
+                        {/*/>*/}
                     </div>
                 }/>
             </Routes>
