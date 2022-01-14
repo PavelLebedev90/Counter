@@ -24,32 +24,12 @@ export function AppWithRedux() {
     }, [state.maxValue, state.startValue])
 
     return (
-        <div>
-            <SuperButtonSetTheme/>
-            <Routes>
-                <Route path={'/twoScreen'} element={
-                    <div className="wrapper">
-                        <CounterWithRedux/>
-                        <ParamsWithRedux/>
-                    </div>
-                }/>
-                <Route key={'oneScreen'} path={'/oneScreen'} element={
-                    <div className="wrapper">
-                        <CounterWithRedux/>
-                    </div>
-                }/>
-            </Routes>
+
+        <div className="wrapper">
+            <CounterWithRedux/>
+            <ParamsWithRedux/>
         </div>
+
     );
 }
 
-export function SuperButtonSetTheme() {
-    return (
-        <div className={'superButtons'}>
-            <button><NavLink to={'/twoScreen'}
-                             className={(isActive) => isActive ? 'activeNav' : 'navlink'}>twoScreen</NavLink></button>
-            <button><NavLink to={'/oneScreen'}
-                             className={(isActive) => isActive ? 'activeNav' : 'navlink'}>oneScreen</NavLink></button>
-        </div>
-    )
-}
